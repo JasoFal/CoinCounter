@@ -17,12 +17,30 @@ describe('CoinCounter', () => {
       }
       if (totalMoney >= .25) {
         quarters ++;
-        console.log(totalMoney);
         return CoinCounter(totalMoney - .25);
       }
     }
     CoinCounter(1);
-    console.log(quarters, "quarters");
     expect(quarters).toEqual(4);
+  });
+
+  test('should give the correct amount of dimes', () => {
+    let quarters = 0;
+    let dimes = 0;
+    const CoinCounter = (totalMoney) => {
+      if (isNaN(totalMoney)) {
+        return null;
+      }
+      if (totalMoney >= .25) {
+        quarters ++;
+        return CoinCounter(totalMoney - .25);
+      } else if (totalMoney >= .1) {
+        dimes ++;
+        return CoinCounter(totalMoney - .1)
+      }
+    }
+    CoinCounter(.2);
+    console.log(dimes, "dimes");
+    expect(dimes).toEqual(2);
   });
 });
