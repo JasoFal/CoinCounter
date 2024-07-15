@@ -1,38 +1,43 @@
-import { CoinCounter } from "../src";
-import { CoinCounterWithClosures } from "../src";
+import { coinCounter } from "../src";
+import { coinCounterWithClosures } from "../src";
 
 describe('CoinCounter', () => {
 
   test('should exit if not a number', () => {
-    const result = CoinCounter("string");
+    const result = coinCounter("string");
     expect(result).toEqual(null);
   });
 
   test('should give the correct amount of quarters', () => {
-    const result = CoinCounter(1);
+    const result = coinCounter(1);
     expect(result).toEqual({"dimes": 0, "nickles": 0, "pennies": 0, "quarters": 4});
   });
 
   test('should give the correct amount of dimes', () => {
-    const result = CoinCounter(.2);
+    const result = coinCounter(.2);
     expect(result).toEqual({"dimes": 2, "nickles": 0, "pennies": 0, "quarters": 0});
   });
 
   test('should give the correct amount of nickles', () => {
-    const result = CoinCounter(.05);
+    const result = coinCounter(.05);
     expect(result).toEqual({"dimes": 0, "nickles": 1, "pennies": 0, "quarters": 0});
   });
 
   test('should give the correct amount of pennies', () => {
-    const result = CoinCounter(.04);
+    const result = coinCounter(.04);
     expect(result).toEqual({"dimes": 0, "nickles": 0, "pennies": 4, "quarters": 0});
   });
 });
 
-describe('CoinCounterWithClosures', () => {
+describe('coinCounterWithClosures', () => {
 
   test('should return null if not a number', () => {
-    const result = CoinCounterWithClosures();
+    const result = coinCounterWithClosures();
     expect(result("string")).toEqual(null);
+  });
+
+  test('should return coinsObj if totalMoney equals zero', () => {
+    const result = coinCounterWithClosures(0)();
+    expect(result).toEqual({"dimes": 0, "nickles": 0, "pennies": 0, "quarters": 0});
   });
 });

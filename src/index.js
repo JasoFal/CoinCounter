@@ -1,4 +1,4 @@
-export const CoinCounter = (totalMoney, coinsObj = { "quarters" : 0, "dimes" : 0, "nickles" : 0, "pennies" : 0 }) => {
+export const coinCounter = (totalMoney, coinsObj = { "quarters" : 0, "dimes" : 0, "nickles" : 0, "pennies" : 0 }) => {
   if (isNaN(totalMoney)) {
     return null;
   }
@@ -11,34 +11,36 @@ export const CoinCounter = (totalMoney, coinsObj = { "quarters" : 0, "dimes" : 0
   // console.log(coinsObj, "coinsObj");
   if (totalMoney >= .25) {
     coinsObj["quarters"]++;
-    return CoinCounter(totalMoney - .25, coinsObj);
+    return coinCounter(totalMoney - .25, coinsObj);
   } else if (totalMoney >= .1) {
     coinsObj["dimes"] ++;
-    return CoinCounter(totalMoney - .1, coinsObj);
+    return coinCounter(totalMoney - .1, coinsObj);
   } else if (totalMoney >= .05) {
     coinsObj["nickles"] ++;
-    return CoinCounter(totalMoney - .05, coinsObj);
+    return coinCounter(totalMoney - .05, coinsObj);
   } else if (totalMoney >= 0) {
     coinsObj["pennies"] ++;
-    return CoinCounter(totalMoney - .01, coinsObj);
+    return coinCounter(totalMoney - .01, coinsObj);
   }
 }
 
 // console.log(CoinCounter(5.99));
 
-export function CoinCounterWithClosures(totalMoney)
-{
+export const coinCounterWithClosures = (totalMoney) => {
+  let coinsObj = { "quarters" : 0, "dimes" : 0, "nickles" : 0, "pennies" : 0 };
+  console.log(totalMoney, "starterTotalMoney");
   return function() {
-    console.log(totalMoney, coinsObj = { "quarters" : 0, "dimes" : 0, "nickles" : 0, "pennies" : 0 });
     if (isNaN(totalMoney)) {
+      console.log(totalMoney, "totalMoney");
       return null;
     }
-    return function() {
-      totalMoney = totalMoney.toFixed(2);
-      if (totalMoney == 0) {
-        return coinsObj;
-      }
+    console.log(coinsObj, "coinsObj");
+    totalMoney = totalMoney.toFixed(2);
+    if (totalMoney == 0) {
+      return coinsObj;
     }
   }
 }
 
+// const test = coinCounterWithClosures(5.99);
+// console.log(coinCounterWithClosures("string")()());
