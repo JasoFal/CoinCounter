@@ -1,68 +1,29 @@
+import { CoinCounter } from "../src";
+
 describe('CoinCounter', () => {
 
   test('should exit if not a number', () => {
-    const CoinCounter = (TotalMoney) => {
-      if (isNaN(TotalMoney)) {
-        return;
-      }
-    }
-    expect(CoinCounter("In")).toEqual();
+    const result = CoinCounter("string");
+    expect(result).toEqual(null);
   });
 
   test('should give the correct amount of quarters', () => {
-    let quarters = 0;
-    const CoinCounter = (totalMoney) => {
-      if (isNaN(totalMoney)) {
-        return null;
-      }
-      if (totalMoney >= .25) {
-        quarters ++;
-        return CoinCounter(totalMoney - .25);
-      }
-    }
-    CoinCounter(1);
-    expect(quarters).toEqual(4);
+    const result = CoinCounter(1);
+    expect(result).toEqual({"dimes": 0, "nickles": 0, "pennies": 0, "quarters": 4});
   });
 
   test('should give the correct amount of dimes', () => {
-    let quarters = 0;
-    let dimes = 0;
-    const CoinCounter = (totalMoney) => {
-      if (isNaN(totalMoney)) {
-        return null;
-      }
-      if (totalMoney >= .25) {
-        quarters ++;
-        return CoinCounter(totalMoney - .25);
-      } else if (totalMoney >= .1) {
-        dimes ++;
-        return CoinCounter(totalMoney - .1)
-      }
-    }
-    CoinCounter(.2);
-    console.log(dimes, "dimes");
-    expect(dimes).toEqual(2);
+    const result = CoinCounter(.2);
+    expect(result).toEqual({"dimes": 2, "nickles": 0, "pennies": 0, "quarters": 0});
   });
 
   test('should give the correct amount of nickles', () => {
-    let nickles = 0;
-    const CoinCounter = (totalMoney) => {
-      if (isNaN(totalMoney)) {
-        return null;
-      }
-      if (totalMoney >= .25) {
-        quarters ++;
-        return CoinCounter(totalMoney - .25);
-      } else if (totalMoney >= .1) {
-        dimes ++;
-        return CoinCounter(totalMoney - .1)
-      } else if (totalMoney >= .05) {
-        nickles ++;
-        return CoinCounter(totalMoney - .05);
-      }
-    }
-    CoinCounter(.05);
-    console.log(nickles, "nickles");
-    expect(nickles).toEqual(1);
+    const result = CoinCounter(.05);
+    expect(result).toEqual({"dimes": 0, "nickles": 1, "pennies": 0, "quarters": 0});
+  });
+
+  test('should give the correct amount of pennies', () => {
+    const result = CoinCounter(.04);
+    expect(result).toEqual({"dimes": 0, "nickles": 0, "pennies": 4, "quarters": 0});
   });
 });
