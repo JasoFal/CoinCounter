@@ -25,3 +25,20 @@ export const CoinCounter = (totalMoney, coinsObj = { "quarters" : 0, "dimes" : 0
 }
 
 // console.log(CoinCounter(5.99));
+
+export function CoinCounterWithClosures(totalMoney)
+{
+  return function() {
+    console.log(totalMoney, coinsObj = { "quarters" : 0, "dimes" : 0, "nickles" : 0, "pennies" : 0 });
+    if (isNaN(totalMoney)) {
+      return null;
+    }
+    return function() {
+      totalMoney = totalMoney.toFixed(2);
+      if (totalMoney == 0) {
+        return coinsObj;
+      }
+    }
+  }
+}
+

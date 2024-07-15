@@ -1,4 +1,5 @@
 import { CoinCounter } from "../src";
+import { CoinCounterWithClosures } from "../src";
 
 describe('CoinCounter', () => {
 
@@ -25,5 +26,13 @@ describe('CoinCounter', () => {
   test('should give the correct amount of pennies', () => {
     const result = CoinCounter(.04);
     expect(result).toEqual({"dimes": 0, "nickles": 0, "pennies": 4, "quarters": 0});
+  });
+});
+
+describe('CoinCounterWithClosures', () => {
+
+  test('should return null if not a number', () => {
+    const result = CoinCounterWithClosures();
+    expect(result("string")).toEqual(null);
   });
 });
