@@ -36,8 +36,8 @@ describe('coinCounterWithClosures', () => {
     expect(result("string")).toEqual(null);
   });
 
-  test('should return coinsObj if totalMoney equals zero', () => {
-    const result = coinCounterWithClosures(0)();
-    expect(result).toEqual({"dimes": 0, "nickles": 0, "pennies": 0, "quarters": 0});
+  test('should give the correct amount of quarters', () => {
+    const result = coinCounterWithClosures(1)();
+    expect(result).toEqual({"dimes": 0, "nickles": 0, "pennies": 0, "quarters": 4})
   });
 });
