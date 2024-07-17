@@ -1,4 +1,4 @@
-export const coinCounter = (totalMoney, coinsObj = { "quarters": 0, "dimes": 0, "nickles": 0, "pennies": 0 }) => {
+const coinCounter = (totalMoney, coinsObj = { "quarters": 0, "dimes": 0, "nickles": 0, "pennies": 0 }) => {
   if (isNaN(totalMoney)) {
     return null;
   }
@@ -6,8 +6,6 @@ export const coinCounter = (totalMoney, coinsObj = { "quarters": 0, "dimes": 0, 
   if (totalMoney == 0) {
     return coinsObj;
   }
-  // console.log(totalMoney, "totalMoney")
-  // console.log(coinsObj, "coinsObj");
   if (totalMoney >= .25) {
     coinsObj["quarters"]++;
     return coinCounter(totalMoney - .25, coinsObj);
@@ -23,9 +21,9 @@ export const coinCounter = (totalMoney, coinsObj = { "quarters": 0, "dimes": 0, 
   }
 }
 
-// console.log(CoinCounter(5.99));
+console.log(coinCounter(5.99));
 
-export function coinCounterWithClosures(totalMoney) {
+function coinCounterWithClosures(totalMoney) {
   let coinsObj = { "quarters": 0, "dimes": 0, "nickles": 0, "pennies": 0 };
   function countQuarters() {
     coinsObj["quarters"]++;
@@ -65,6 +63,3 @@ export function coinCounterWithClosures(totalMoney) {
 }
 
 console.log(coinCounterWithClosures(13.43)());
-
-// const test = coinCounterWithClosures(5.99);
-// console.log(coinCounterWithClosures("string")()());
