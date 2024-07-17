@@ -50,4 +50,9 @@ describe('coinCounterWithClosures', () => {
     const result = coinCounterWithClosures(.05)();
     expect(result).toEqual({"dimes": 0, "nickles": 1, "pennies": 0, "quarters": 0})
   });
+
+  test('should give the correct amount of pennies', () => {
+    const result = coinCounterWithClosures(.04)();
+    expect(result).toEqual({"dimes": 0, "nickles": 0, "pennies": 4, "quarters": 0})
+  });
 });

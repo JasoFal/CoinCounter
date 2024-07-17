@@ -39,6 +39,10 @@ export function coinCounterWithClosures(totalMoney) {
     coinsObj["nickles"]++;
     totalMoney -= .05;
   }
+  function countPennies() {
+    coinsObj["pennies"]++;
+    totalMoney -= .01;
+  }
   return function () {
     if (isNaN(totalMoney)) {
       return null;
@@ -51,6 +55,8 @@ export function coinCounterWithClosures(totalMoney) {
         countDimes();
       } else if (totalMoney >= .05) {
         countNickles();
+      } else {
+        countPennies();
       }
       totalMoney = totalMoney.toFixed(2);
     } while (totalMoney > 0)
@@ -58,7 +64,7 @@ export function coinCounterWithClosures(totalMoney) {
   }
 }
 
-console.log(coinCounterWithClosures(1)());
+console.log(coinCounterWithClosures(13.43)());
 
 // const test = coinCounterWithClosures(5.99);
 // console.log(coinCounterWithClosures("string")()());
