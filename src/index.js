@@ -29,8 +29,11 @@ export const coinCounterWithClosures = (totalMoney) => {
   let coinsObj = { "quarters": 0, "dimes": 0, "nickles": 0, "pennies": 0 };
   function countQuarters() {
     coinsObj["quarters"]++;
-    console.log(coinsObj["quarters"]);
     totalMoney -= .25;
+  }
+  function countDimes() {
+    coinsObj["dimes"]++;
+    totalMoney -= .1;
   }
   return function () {
     if (isNaN(totalMoney)) {
@@ -40,7 +43,8 @@ export const coinCounterWithClosures = (totalMoney) => {
     do {
       if (totalMoney >= .25) {
         countQuarters();
-        console.log(totalMoney);
+      } else if (totalMoney >= .1) {
+        countDimes();
       }
       totalMoney = totalMoney.toFixed(2);
     } while (totalMoney > 0)
@@ -48,7 +52,7 @@ export const coinCounterWithClosures = (totalMoney) => {
   }
 }
 
-console.log(coinCounterWithClosures(1)());
+console.log(coinCounterWithClosures(1.20)());
 
 // const test = coinCounterWithClosures(5.99);
 // console.log(coinCounterWithClosures("string")()());
